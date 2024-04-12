@@ -1,0 +1,47 @@
+:root {
+  /* 基础色 */
+  --color-primary: 155 86 252;
+  /* --color-primary: 133 11 112; */
+  --color-success: 48 150 48;
+  --color-info: 28 177 249;
+  --color-warning: 255 178 2;
+  --color-danger: 217 83 79;
+  /* 深色 */
+  --color-black: 0 0 0;
+
+  --color-dark: 30 33 36;
+  /* 浅色 */
+  --color-white: 255 255 255;
+  --color-gray: 153 153 153;
+  /* 主题 */
+  --foreground: 226 226 226;
+  --background: 30 33 36;
+
+  --btn-blue: 15 48 77;
+  --btn-brown: 90 56 6;
+  --btn-blue-border: 76 76 125;
+  --btn-brown-border: 138 86 9;
+}
+
+.scale-up-enter-active,
+.scale-up-leave-active {
+    transition: all 0.3s ease;
+}
+
+.scale-up-enter-from,
+.scale-up-leave-to {
+    scale: .5;
+    opacity: 0;
+    transform: translateY(0) translateX(-50%)
+}
+
+.slider-enter-active,
+.slider-leave-active {
+    transition: all 0.3s linear;
+}
+
+.slider-enter-from,
+.slider-leave-to {
+    opacity: 0;
+    transform: translateY(100%);
+}
