@@ -6,6 +6,10 @@
   --color-info: 28 177 249;
   --color-warning: 255 178 2;
   --color-danger: 217 83 79;
+  --color-brown: 90 56 6;
+  --color-blue: 15 48 77;
+
+
   /* 深色 */
   --color-black: 0 0 0;
 
@@ -17,8 +21,8 @@
   --foreground: 226 226 226;
   --background: 30 33 36;
 
-  --btn-blue: 15 48 77;
-  --btn-brown: 90 56 6;
+  /* --btn-blue: 15 48 77;
+  --btn-brown: 90 56 6; */
   --btn-blue-border: 76 76 125;
   --btn-brown-border: 138 86 9;
 }
@@ -44,4 +48,26 @@
 .slider-leave-to {
     opacity: 0;
     transform: translateY(100%);
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.3s linear;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.scroll-bar::-webkit-scrollbar {
+    width: 3px;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+    background: #555454; 
+    border-radius: 3px;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb:hover {
+    /* background: #f40; */
 }

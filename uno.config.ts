@@ -35,9 +35,9 @@ export default defineConfig({
             'abs-x-center': 'absolute left-50% -transform-translate-x-50%',
             'abs-y-center': 'absolute top-50% -transform-translate-y-50%',
             'abs-center': 'absolute top-50% left-50% -transform-translate-50%',
-            'd-btn': 'text-center px-4 py-6 cursor-pointer select-none border-1 border-solid relative',
-            'brown-btn': 'bg-btnbrown text-foreground border-btnbrownborder',
-            'blue-btn': 'bg-btnblue text-foreground  border-btnblueborder'
+            // 'd-btn': 'text-center px-4 py-6 cursor-pointer select-none border-1 border-solid relative',
+            // 'brown-btn': 'bg-btnbrown text-foreground border-btnbrownborder',
+            // 'blue-btn': 'bg-btnblue text-foreground  border-btnblueborder'
         },
     ],
     rules: [
@@ -61,12 +61,11 @@ export default defineConfig({
             background: 'rgb(var(--background))',
             foreground: 'rgb(var(--foreground))',
 
-            btnblue: 'rgb(var(--btn-blue))',
+            blue: 'rgb(var(--color-blue))',
+            brown: 'rgb(var(--color-brown))',
+
             btnblueborder: 'rgb(var(--btn-blue-border))',
-            btnbrown: 'rgb(var(--btn-brown))',
             btnbrownborder: 'rgb(var(--btn-brown-border))',
-
-
         },
         fontSize: {
             base: '14px',
@@ -75,5 +74,5 @@ export default defineConfig({
             lg: '16px',
             xl: '18px',
         },
-    }
+    },
 });
