@@ -1,5 +1,5 @@
 <template>
-    <button class="d-button outline-none border-none px-16 leading-[1] text-sm t-a-3 f-row items-center justify-center" :class="[
+    <button class=":uno: d-button outline-none border-none px-16 leading-[1] text-sm t-a-3 f-row items-center justify-center relative" :class="[
         { 'w-full': block, disabled: loading || disabled, 'rounded-full': round },
     ]" :style="customStyle" @click.stop="onClick">
         <span>

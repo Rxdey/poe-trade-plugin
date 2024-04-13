@@ -125,13 +125,13 @@
     /** 新增翻页面板 添加jquery */
     const createTranslatefield = () => {
         const container = `
-        <div class="field-container">
-            <div class="field-wrap">
+        <div class=":uno: field-container">
+            <div class=":uno: field-wrap">
                 <div id="field-tip"></div>
-                <textarea id="field-textarea" class="field-textarea" type="text" placeholder="在这里粘贴" rows="5"></textarea>
-                <div class="field-button" id="en-button">转换并复制</div>
+                <textarea id="field-textarea" class=":uno: field-textarea" type="text" placeholder="在这里粘贴" rows="5"></textarea>
+                <div class=":uno: field-button" id="en-button">转换并复制</div>
             </div>
-            <div class="field-button field-button-red" id="close">显示转换界面</div>
+            <div class=":uno: field-button field-button-red" id="close">显示转换界面</div>
         </div>
         `;
         let flag = false;

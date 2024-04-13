@@ -1,4 +1,4 @@
-import CnPoeExportDb from 'cn-poe-export-db';
+import { monkeyWindow } from '$';
 import { BasicTranslatorFactory } from 'cn-poe-translator';
 
 /** 复制文本 */
@@ -14,7 +14,7 @@ export const copyToClipboard = (txt = '', cb = () => {}) => {
 /** 翻译 */
 export const translateItem = (text: string) => {
     if (!text) return;
-    const factory = new BasicTranslatorFactory(CnPoeExportDb);
+    const factory = new BasicTranslatorFactory(monkeyWindow.CnPoeExportDb);
     const textTranslator = factory.getTextTranslator();
     return textTranslator.translate(text);
 };

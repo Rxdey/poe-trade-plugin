@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import monkey, { cdn } from 'vite-plugin-monkey';
+import monkey, { cdn, util } from 'vite-plugin-monkey';
 import path from 'node:path';
 import UnoCSS from 'unocss/vite'
 
@@ -20,6 +20,10 @@ export default defineConfig({
                 'namespace': 'npm/vite-plugin-monkey',
                 'match': ['https://poe.game.qq.com/trade/*', 'https://apps.game.qq.com/poe/a20160407LoginCheck/loginsuccess.html'],
                 'run-at': 'document-start',
+                'require': [
+                    'https://cdn.jsdelivr.net/npm/cn-poe-export-db@0.1.5/dist/db.global.js',
+                    util.dataUrl(`window.CnPoeExportDb=CnPoeExportDb`)
+                ]
             },
             build: {
                 externalGlobals: {

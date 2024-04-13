@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import Translate from './container/Translate/Translate.vue';
+import Trade from './container/Trade/Trade.vue';
 import moreTool from './container/More';
 import 'virtual:uno.css';
 import './style.css';
@@ -9,7 +9,7 @@ import './style.css';
  * 用于导入pob
  */
 if (/poe\.game\.qq\.com\/trade/.test(window.location.href)) {
-    const app = createApp(Translate);
+    const app = createApp(Trade);
     app.mount(
         (() => {
             const app = document.createElement('div');

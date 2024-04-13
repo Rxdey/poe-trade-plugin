@@ -1,6 +1,7 @@
 import { copyToClipboard, translateItem } from '@/utils';
 
-const injectButton = () => {
+/** 沿用原来的监听 */
+const injectButton = (cb?: (e: HTMLElement) => void) => {
     const targets = Array.from(document.querySelectorAll('.row[data-id]'));
     if (!targets || !targets.length) return;
     targets.forEach((target: any) => {
@@ -31,14 +32,16 @@ const injectButton = () => {
             copyToClipboard(res);
             target.__vue__.itemTextCopied();
         });
+        // console.dir(target);
+        if (cb) cb(target);
     });
 };
 
-const initObserver = () => {
+const initObserver = (cb?: (e: HTMLElement) => void) => {
     const observer = new MutationObserver((mutationsList, observer) => {
         for (let mutation of mutationsList) {
             if ((mutation.target as HTMLElement).className !== 'resultset') return;
-            injectButton();
+            injectButton(cb);
         }
     });
     const targetNode = document.querySelector('body')!;

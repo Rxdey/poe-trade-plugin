@@ -1,5 +1,6 @@
 import { defineConfig, presetAttributify, presetUno, presetIcons, transformerVariantGroup } from 'unocss';
 import presetRemToPx from '@unocss/preset-rem-to-px';
+import transformerCompileClass from '@unocss/transformer-compile-class';
 
 export default defineConfig({
     presets: [
@@ -21,7 +22,7 @@ export default defineConfig({
             baseFontSize: 4,
         }),
     ],
-    transformers: [transformerVariantGroup()],
+    transformers: [(transformerCompileClass as any)(), transformerVariantGroup()],
     shortcuts: [
         {
             'flex-center': 'f-row justify-center items-center',

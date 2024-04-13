@@ -1,14 +1,14 @@
 <template>
     <Teleport to="body">
         <Transition name="scale-up">
-            <div class="bg-white text-dark fixed top-30% left-50% z-2001 min-w-400 -translate-x-50% translate-y-0 transform-origin-left-center rounded-12 z-1000" @click.stop v-if="visible">
-                <div class="px-20 pt-20 pb-10 f-row justify-between">
+            <div class=":uno: bg-white text-dark fixed top-30% left-50% z-2001 min-w-400 -translate-x-50% translate-y-0 transform-origin-left-center rounded-12 z-1000" @click.stop v-if="visible">
+                <div class=":uno: px-20 pt-20 pb-10 f-row justify-between">
                     <slot name="title">
-                        <span class="text-xl">{{ title }}</span>
+                        <span class=":uno: text-xl">{{ title }}</span>
                     </slot>
-                    <i class="i-mdi:close cursor-pointer" @click="onCancel"></i>
+                    <!-- <i class=":uno: i-mdi:close cursor-pointer" @click="onCancel"></i> -->
                 </div>
-                <div class="p-20">
+                <div class=":uno: p-20">
                     <slot></slot>
                 </div>
 

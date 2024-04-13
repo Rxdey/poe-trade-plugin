@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/node": "^20.12.7",
+    "@unocss/transformer-compile-class": "^0.59.2",
     "@vueuse/core": "^10.9.0",
     "cn-poe-export-db": "^0.1.5",
     "cn-poe-translator": "^0.2.8",
