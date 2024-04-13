@@ -17,7 +17,7 @@ export default defineConfig({
                 'author': 'rxdey',
                 'license': 'MIT',
                 'icon': 'https://poe.game.qq.com/favicon.ico',
-                'namespace': 'npm/vite-plugin-monkey',
+                'namespace': 'http://tampermonkey.net/',
                 'match': ['https://poe.game.qq.com/trade/*', 'https://apps.game.qq.com/poe/a20160407LoginCheck/loginsuccess.html'],
                 'run-at': 'document-start',
                 'require': [
