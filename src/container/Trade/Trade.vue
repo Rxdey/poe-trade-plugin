@@ -34,8 +34,6 @@ const callBack = (e: HTMLElement) => {
             matches.push(match[1].replace(/【|】/g, ''));
         }
     };
-    // console.log(info);
-    console.log(matches);
     if (!matches.length) return;
     const currentType = CLUSTER_LIST.find(e => new RegExp(`^${e.attribute}`).test(attribute[1]));
     if (!currentType) return;
@@ -44,7 +42,6 @@ const callBack = (e: HTMLElement) => {
         attribute: attribute[1],
         types: currentType.detail.filter(e => matches.includes(e.name))
     };
-    // console.log(data);
     const clusterCom = createApp(Cluster, {
         data
     });

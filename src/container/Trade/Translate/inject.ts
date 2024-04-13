@@ -32,7 +32,6 @@ const injectButton = (cb?: (e: HTMLElement) => void) => {
             copyToClipboard(res);
             target.__vue__.itemTextCopied();
         });
-        // console.dir(target);
         if (cb) cb(target);
     });
 };

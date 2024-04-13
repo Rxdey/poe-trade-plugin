@@ -90,7 +90,6 @@ const onReset = async () => {
         message: '重置后将恢复预设选项，所有自定义的列表都将被删除。是否继续?',
     });
     if (!res) return;
-    console.log('yes')
     searchKeys.value = SEARCH_PARAMS;
     saveStore(SEARCH_PARAMS)
 };

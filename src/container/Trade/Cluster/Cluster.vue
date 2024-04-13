@@ -1,6 +1,6 @@
 <template>
     <div class=":uno: group text-foreground text-xs mt-10 relative cursor-pointer inline-block pt-10">
-        <span title="该功能尚在实验阶段, 不保证内容准确。如发现对不上的请前往插件页面反馈">查看天赋位置</span>
+        <span title="该功能尚在实验中, 不保证内容准确。如发现对不上的请前往插件页面反馈">查看天赋位置</span>
         <div class=":uno: flex-col justify-center items-center bottom-100% abs-x-center bg-black/90 hidden group-hover:flex">
             <canvas ref="canvas" :width="size" :height="size"></canvas>
         </div>

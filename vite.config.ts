@@ -12,8 +12,8 @@ export default defineConfig({
         monkey({
             entry: 'src/main.ts',
             userscript: {
-                'name': 'POE trade plugin',
-                'description': '市集优化',
+                'name': 'POE流放之路网页市集插件',
+                'description': '市集一些优化',
                 'author': 'rxdey',
                 'license': 'MIT',
                 'icon': 'https://poe.game.qq.com/favicon.ico',
