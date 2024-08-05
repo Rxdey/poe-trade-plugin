@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import monkey, { cdn, util } from 'vite-plugin-monkey';
 import path from 'node:path';
-import UnoCSS from 'unocss/vite'
+import UnoCSS from 'unocss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,14 +20,14 @@ export default defineConfig({
                 'namespace': 'http://tampermonkey.net/',
                 'match': ['https://poe.game.qq.com/trade/*', 'https://apps.game.qq.com/poe/a20160407LoginCheck/loginsuccess.html'],
                 'run-at': 'document-start',
-                'require': [
-                    'https://cdn.jsdelivr.net/npm/cn-poe-export-db@0.1.5/dist/db.global.js',
-                    util.dataUrl(`window.CnPoeExportDb=CnPoeExportDb`)
-                ]
+                'require': ['https://unpkg.com/cn-poe-export-db@0.3.2/dist/db.global.js', util.dataUrl(`window.CnPoeExportDb=CnPoeExportDb`)],
             },
             build: {
                 externalGlobals: {
-                    vue: cdn.jsdelivr('Vue', 'dist/vue.global.prod.js'),
+                    // vue: cdn.jsdelivr('Vue', 'dist/vue.global.prod.js'),
+                    // vue: cdn.bootcdn('Vue', 'vue.global.prod.min.js'),
+                    vue: cdn.unpkg('Vue', 'dist/vue.global.prod.js'),
+                    // https://unpkg.com/Vue/3.2.45/dist/vue.global.prod.js
                 },
             },
         }),
