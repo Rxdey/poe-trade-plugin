@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import monkey, { cdn, util } from 'vite-plugin-monkey';
+import monkey from 'vite-plugin-monkey';
 import path from 'node:path';
 import UnoCSS from 'unocss/vite';
 
@@ -13,22 +13,18 @@ export default defineConfig({
             entry: 'src/main.ts',
             userscript: {
                 'name': 'POE流放之路网页市集插件',
-                'description': '市集一些优化',
+                'description': '国服网页市集收藏夹、历史记录和固定商品助手',
                 'author': 'rxdey',
                 'license': 'MIT',
                 'icon': 'https://poe.game.qq.com/favicon.ico',
                 'namespace': 'http://tampermonkey.net/',
-                'match': ['https://poe.game.qq.com/trade/*', 'https://apps.game.qq.com/poe/a20160407LoginCheck/loginsuccess.html'],
-                'run-at': 'document-start',
-                'require': ['https://unpkg.com/cn-poe-export-db@0.3.2/dist/db.global.js', util.dataUrl(`window.CnPoeExportDb=CnPoeExportDb`)],
-            },
-            build: {
-                externalGlobals: {
-                    // vue: cdn.jsdelivr('Vue', 'dist/vue.global.prod.js'),
-                    // vue: cdn.bootcdn('Vue', 'vue.global.prod.min.js'),
-                    vue: cdn.unpkg('Vue', 'dist/vue.global.prod.js'),
-                    // https://unpkg.com/Vue/3.2.45/dist/vue.global.prod.js
-                },
+                'match': [
+                    'https://poe.game.qq.com/trade/search',
+                    'https://poe.game.qq.com/trade/search/*',
+                ],
+                'include': ['https://poe.game.qq.com/trade/search*'],
+                'run-at': 'document-idle',
+                'grant': ['GM_getValue', 'GM_setValue', 'GM_deleteValue'],
             },
         }),
     ],
