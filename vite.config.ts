@@ -13,7 +13,7 @@ export default defineConfig({
             entry: 'src/main.ts',
             userscript: {
                 'name': 'POE流放之路网页市集插件',
-                'description': '国服网页市集收藏夹、历史记录和固定商品助手',
+                'description': '国服网页市集收藏、历史、固定商品与装备文本翻译助手',
                 'author': 'rxdey',
                 'license': 'MIT',
                 'icon': 'https://poe.game.qq.com/favicon.ico',
@@ -25,6 +25,9 @@ export default defineConfig({
                 'include': ['https://poe.game.qq.com/trade/search*'],
                 'run-at': 'document-idle',
                 'grant': ['GM_getValue', 'GM_setValue', 'GM_deleteValue'],
+                'require': [
+                    'https://cdn.jsdelivr.net/npm/cn-poe-export-db@0.8.5/dist/db.global.js',
+                ],
             },
         }),
     ],

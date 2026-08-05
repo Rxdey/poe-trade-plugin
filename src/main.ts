@@ -4,6 +4,7 @@ import SidebarApp from '@/app/SidebarApp/index.vue';
 import { tradeSiteAdapter } from '@/adapters/poe-cn/trade-site-adapter';
 import { PinnedItemsEnhancer } from '@/features/pinned-items/pinned-items-enhancer';
 import { ClusterJewelEnhancer } from '@/features/cluster-jewels/cluster-jewel-enhancer';
+import { ItemTranslationEnhancer } from '@/features/item-translation/item-translation-enhancer';
 import { ResultEnhancerRunner } from '@/result-enhancers/result-enhancer-runner';
 import { RouteObserver } from '@/services/route-observer';
 import { useBookmarksStore } from '@/stores/bookmarks-store';
@@ -63,7 +64,12 @@ const bootstrap = async (): Promise<void> => {
 
         const pinnedEnhancer = new PinnedItemsEnhancer(tradeSiteAdapter, pinnedStore, uiStore);
         const clusterJewelEnhancer = new ClusterJewelEnhancer(tradeSiteAdapter);
-        const enhancerRunner = new ResultEnhancerRunner(tradeSiteAdapter, [pinnedEnhancer, clusterJewelEnhancer]);
+        const itemTranslationEnhancer = new ItemTranslationEnhancer(tradeSiteAdapter, uiStore);
+        const enhancerRunner = new ResultEnhancerRunner(tradeSiteAdapter, [
+            pinnedEnhancer,
+            clusterJewelEnhancer,
+            itemTranslationEnhancer,
+        ]);
         routeObserver.start();
         enhancerRunner.start();
 

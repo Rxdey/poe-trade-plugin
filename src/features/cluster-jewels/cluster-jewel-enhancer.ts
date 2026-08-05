@@ -1,5 +1,6 @@
 import type { TradeSiteAdapter } from '@/adapters/poe-cn/trade-site-adapter';
 import type { TradeResultEnhancer } from '@/result-enhancers/types';
+import { ensureResultItemTools, removeResultItemTool } from '@/result-enhancers/result-item-tools';
 import { parseLargeClusterJewel } from './services/cluster-parser';
 import { createClusterPreview } from './services/cluster-preview';
 import type { ClusterJewelAnalysis } from './types';
@@ -32,7 +33,6 @@ export class ClusterJewelEnhancer implements TradeResultEnhancer {
 
         const entry = document.createElement('span');
         entry.className = ENTRY_CLASS;
-        entry.setAttribute('data-ptp-snapshot-exclude', 'true');
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'ptp-cluster-entry-button';
@@ -49,8 +49,7 @@ export class ClusterJewelEnhancer implements TradeResultEnhancer {
         button.addEventListener('focus', () => this.openPopover(button, analysis));
         button.addEventListener('blur', this.scheduleClosePopover);
         entry.appendChild(button);
-        renderedItem.classList.add('ptp-cluster-host');
-        renderedItem.appendChild(entry);
+        ensureResultItemTools(renderedItem).appendChild(entry);
         renderedItem.setAttribute(ENHANCED_ATTRIBUTE, 'true');
     }
 
@@ -63,10 +62,9 @@ export class ClusterJewelEnhancer implements TradeResultEnhancer {
         document.removeEventListener('pointerdown', this.handleDocumentPointerDown);
         window.removeEventListener('scroll', this.handleScroll, true);
         window.removeEventListener('resize', this.closePopover);
-        document.querySelectorAll(`.${ENTRY_CLASS}`).forEach(element => element.remove());
+        document.querySelectorAll<HTMLElement>(`.${ENTRY_CLASS}`).forEach(removeResultItemTool);
         document.querySelectorAll<HTMLElement>(`[${ENHANCED_ATTRIBUTE}]`).forEach(element => {
             element.removeAttribute(ENHANCED_ATTRIBUTE);
-            element.classList.remove('ptp-cluster-host');
         });
     }
 

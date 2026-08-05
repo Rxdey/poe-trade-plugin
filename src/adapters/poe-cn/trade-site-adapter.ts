@@ -11,6 +11,7 @@ export interface TradeSiteAdapter {
     getResultActionContainer(row: HTMLElement): HTMLElement | null;
     getResultRenderedItem(row: HTMLElement): HTMLElement | null;
     getResultDetailsText(row: HTMLElement): string;
+    triggerResultItemCopy(row: HTMLElement): boolean;
     findResultRow(id: string): HTMLElement | null;
     setSidebarExpanded(expanded: boolean): void;
     setSidebarWidth(width: number): void;
@@ -22,6 +23,7 @@ const SELECTORS = {
     resultActions: '.details .btns',
     details: '.middle',
     renderedItem: '.itemRendered',
+    itemCopyButton: '.left > button.copy[title="复制物品"]',
     pricing: '.details .price',
     searchName: '.search-panel .search-bar .search-left input',
     category: '.search-advanced-items .filter-group:nth-of-type(1) .filter-property:nth-of-type(1) input',
@@ -100,7 +102,7 @@ class PoeCnTradeSiteAdapter implements TradeSiteAdapter {
         const renderedItemClone = renderedItemElement.cloneNode(true) as HTMLElement;
         renderedItemClone.querySelectorAll('[data-ptp-snapshot-exclude]').forEach(element => element.remove());
         renderedItemClone.removeAttribute('data-ptp-cluster-jewel-enhanced');
-        renderedItemClone.classList.remove('ptp-cluster-host');
+        renderedItemClone.classList.remove('ptp-result-item-tools-host');
         return {
             id,
             detailsElement: detailsElement.cloneNode(true) as HTMLElement,
@@ -119,6 +121,14 @@ class PoeCnTradeSiteAdapter implements TradeSiteAdapter {
 
     getResultDetailsText(row: HTMLElement): string {
         return row.querySelector<HTMLElement>(SELECTORS.details)?.innerText ?? '';
+    }
+
+    triggerResultItemCopy(row: HTMLElement): boolean {
+        const copyButton = row.querySelector<HTMLButtonElement>(SELECTORS.itemCopyButton);
+        if (!copyButton || copyButton.disabled) return false;
+        // 直接调用真实按钮的 click，让市集自身的 Vue 事件生成完整装备文本。
+        copyButton.click();
+        return true;
     }
 
     findResultRow(id: string): HTMLElement | null {

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      cn-poe-translator:
+        specifier: 1.3.0
+        version: 1.3.0
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.5.40(typescript@5.9.3))
@@ -30,6 +33,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^6.0.8
         version: 6.0.8(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0))(vue@3.5.40(typescript@5.9.3))
+      cn-poe-export-db:
+        specifier: 0.8.5
+        version: 0.8.5
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -725,6 +731,12 @@ packages:
   chokidar@5.0.0:
     resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
     engines: {node: '>= 20.19.0'}
+
+  cn-poe-export-db@0.8.5:
+    resolution: {integrity: sha512-HM+HfNFGOZnwfb6hgfMhmKg9WT5CujEB922dlCP0aV0bmvb35YJGCmvpe/tvh49zCEzOjYFPZzBS84Ub4e4ORg==}
+
+  cn-poe-translator@1.3.0:
+    resolution: {integrity: sha512-IEL99fE59XoKdG0BOly7OVnFU6L+7ahcKa4tYi91fAqyQxM9IYbASZa4rdMy7qDH2rYJK7OHpXNZ5T8eCKwlVQ==}
 
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
@@ -1748,6 +1760,10 @@ snapshots:
   chokidar@5.0.0:
     dependencies:
       readdirp: 5.0.0
+
+  cn-poe-export-db@0.8.5: {}
+
+  cn-poe-translator@1.3.0: {}
 
   colorette@2.0.20: {}
 

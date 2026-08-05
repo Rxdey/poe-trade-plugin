@@ -64,6 +64,8 @@
             <AppButton label="确认" variant="danger" @click="uiStore.resolveConfirm(true)" />
         </template>
     </AppModal>
+
+    <QuickTranslator />
 </template>
 
 <script setup lang="ts">
@@ -74,6 +76,7 @@ import AppModal from '@/components/AppModal/index.vue';
 import BookmarksPage from '@/features/bookmarks/index.vue';
 import HistoryPage from '@/features/history/index.vue';
 import PinnedItemsPage from '@/features/pinned-items/index.vue';
+import QuickTranslator from '@/features/item-translation/components/QuickTranslator/index.vue';
 import { tradeSiteAdapter } from '@/adapters/poe-cn/trade-site-adapter';
 import { useResizablePanel } from '@/composables/use-resizable-panel';
 import { usePinnedItemsStore } from '@/stores/pinned-items-store';
