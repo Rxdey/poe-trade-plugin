@@ -65,7 +65,7 @@
         </template>
     </AppModal>
 
-    <QuickTranslator />
+    <BottomTools />
 </template>
 
 <script setup lang="ts">
@@ -73,10 +73,10 @@ import { storeToRefs } from 'pinia';
 import { watch } from 'vue';
 import AppButton from '@/components/AppButton/index.vue';
 import AppModal from '@/components/AppModal/index.vue';
+import BottomTools from '@/components/BottomTools/index.vue';
 import BookmarksPage from '@/features/bookmarks/index.vue';
 import HistoryPage from '@/features/history/index.vue';
 import PinnedItemsPage from '@/features/pinned-items/index.vue';
-import QuickTranslator from '@/features/item-translation/components/QuickTranslator/index.vue';
 import { tradeSiteAdapter } from '@/adapters/poe-cn/trade-site-adapter';
 import { useResizablePanel } from '@/composables/use-resizable-panel';
 import { usePinnedItemsStore } from '@/stores/pinned-items-store';

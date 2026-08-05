@@ -1,12 +1,12 @@
 <template>
-    <section class="ptp-quick-translator" :class="{ 'is-open': opened }">
+    <section class="ptp-quick-translator">
         <div v-if="opened" class="ptp-quick-translator-panel">
             <header class="ptp-quick-translator-header">
                 <div>
                     <strong>快捷翻译</strong>
                     <small>国服装备文本 → 英文</small>
                 </div>
-                <button type="button" class="ptp-icon-button" title="关闭快捷翻译" @click="opened = false">
+                <button type="button" class="ptp-icon-button" title="关闭快捷翻译" @click="close">
                     <span class="i-mdi-close"></span>
                 </button>
             </header>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <button v-else type="button" class="ptp-quick-translator-trigger" @click="opened = true">
+        <button type="button" class="ptp-bottom-tool-button" :class="{ 'is-active': opened }" @click="toggle">
             <span class="i-mdi-translate"></span>
             <span>快捷翻译</span>
         </button>
@@ -46,9 +46,13 @@ import { useUiStore } from '@/stores/ui-store';
 import { copyText } from '@/utils/clipboard';
 
 const uiStore = useUiStore();
-const opened = ref(false);
+const props = defineProps<{ opened: boolean }>();
+const emit = defineEmits<{ 'update:opened': [opened: boolean] }>();
 const processing = ref(false);
 const itemText = ref('');
+
+const toggle = (): void => emit('update:opened', !props.opened);
+const close = (): void => emit('update:opened', false);
 
 /** 翻译输入文本、更新编辑框并复制英文结果。 */
 const translateAndCopy = async (): Promise<void> => {

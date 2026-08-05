@@ -42,6 +42,12 @@
 - 翻译器随脚本打包；翻译数据库通过 jsDelivr CDN 加载，首次使用前需要能够访问该 CDN。
 - 不再读取市集旧版 Vue 实例的 `__vue__` 数据，兼容新版动态结果节点。
 
+### Cookie 导出
+
+- 左下角提供“复制 Cookie”，读取当前交易地址适用的全部 Cookie，包含 Tampermonkey 有权访问的 HttpOnly Cookie。
+- 点击后以标准请求头格式展示并自动复制，例如 `name=value; name2=value2`。
+- Cookie 只在点击时即时读取并保留在当前页面内存中，不写入 GM 存储；关闭或刷新页面后即丢弃。
+
 ## 安装与开发
 
 ```bash
