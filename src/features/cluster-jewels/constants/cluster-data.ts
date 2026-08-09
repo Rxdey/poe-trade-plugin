@@ -721,7 +721,7 @@ export const CLUSTER_LIST: ClusterJewelDefinition[] = [
                 order: 1,
             },
             {
-                name: '多利亚尼之训',
+                name: '多里亚尼之训',
                 ps: '后缀',
                 order: 2,
             },
@@ -796,7 +796,7 @@ export const CLUSTER_LIST: ClusterJewelDefinition[] = [
                 order: 1,
             },
             {
-                name: '多利亚尼之训',
+                name: '多里亚尼之训',
                 ps: '后缀',
                 order: 2,
             },
@@ -851,7 +851,7 @@ export const CLUSTER_LIST: ClusterJewelDefinition[] = [
                 order: 1,
             },
             {
-                name: '多利亚尼之训',
+                name: '多里亚尼之训',
                 ps: '后缀',
                 order: 2,
             },
@@ -926,7 +926,7 @@ export const CLUSTER_LIST: ClusterJewelDefinition[] = [
                 order: 1,
             },
             {
-                name: '多利亚尼之训',
+                name: '多里亚尼之训',
                 ps: '后缀',
                 order: 2,
             },

@@ -25,9 +25,6 @@ export default defineConfig({
                 'include': ['https://poe.game.qq.com/trade/search*'],
                 'run-at': 'document-idle',
                 'grant': ['GM_getValue', 'GM_setValue', 'GM_deleteValue', 'GM_cookie'],
-                'require': [
-                    'https://cdn.jsdelivr.net/npm/cn-poe-export-db@0.8.5/dist/db.global.js',
-                ],
             },
         }),
     ],

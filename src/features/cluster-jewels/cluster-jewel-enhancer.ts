@@ -37,7 +37,7 @@ export class ClusterJewelEnhancer implements TradeResultEnhancer {
         button.type = 'button';
         button.className = 'ptp-cluster-entry-button';
         button.textContent = '天赋位置';
-        button.title = '该功能尚在实验中，不保证位置内容完全准确';
+    
         button.setAttribute('aria-expanded', 'false');
         button.addEventListener('click', event => {
             event.preventDefault();

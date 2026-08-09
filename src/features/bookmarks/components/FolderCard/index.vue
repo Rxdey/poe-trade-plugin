@@ -32,17 +32,14 @@
                     <a
                         href="#"
                         class="ptp-search-link"
-                        :class="{ 'is-completed': Boolean(search.completedAt) }"
                         :title="`${search.sourceLeague}/${search.slug}`"
                         @click.prevent="openSearch(search)"
                     >
-                        <span v-if="search.completedAt" class="i-mdi-check-circle"></span>
                         <span>{{ search.title }}</span>
                     </a>
                     <div class="ptp-search-actions">
                         <button type="button" class="ptp-icon-button" title="复制链接" @click="copySearch(search)"><span class="i-mdi-content-copy"></span></button>
-                        <button type="button" class="ptp-icon-button" title="更新为当前搜索" :disabled="!tradeStore.hasSearch" @click="updateLocation(search)"><span class="i-mdi-link-variant"></span></button>
-                        <button type="button" class="ptp-icon-button" :title="search.completedAt ? '取消完成' : '标记完成'" @click="toggleCompleted(search)"><span class="i-mdi-check"></span></button>
+                        <button type="button" class="ptp-icon-button" title="更新为当前搜索（仅替换地址）" :disabled="!tradeStore.hasSearch" @click="updateLocation(search)"><span class="i-mdi-update"></span></button>
                         <button type="button" class="ptp-icon-button" title="重命名" @click="startRename(search)"><span class="i-mdi-pencil"></span></button>
                         <button type="button" class="ptp-icon-button is-danger" title="删除" @click="deleteSearch(search)"><span class="i-mdi-delete"></span></button>
                         <button type="button" class="ptp-icon-button ptp-drag-handle" title="拖动排序" data-sort-handle><span class="i-mdi-drag"></span></button>
@@ -143,10 +140,6 @@ const updateLocation = async (search: SavedSearch): Promise<void> => {
     const location = tradeStore.currentLocation;
     if (!location) return;
     notifyResult(await bookmarksStore.updateSearchLocation(search.id, location), '搜索地址已更新');
-};
-
-const toggleCompleted = async (search: SavedSearch): Promise<void> => {
-    notifyResult(await bookmarksStore.toggleSearchCompleted(search.id), '完成状态已更新');
 };
 
 const startRename = (search: SavedSearch): void => {

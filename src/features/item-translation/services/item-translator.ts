@@ -1,18 +1,11 @@
-import { ZhToEn } from 'cn-poe-translator';
+import { TranslatorFactory, type TextTranslator } from 'cn-poe-utils/translator/zh2en';
 import { failureResult, successResult, type OperationResult } from '@/types';
-
-type TextTranslator = InstanceType<(typeof ZhToEn)['TextTranslator']>;
 
 let textTranslator: TextTranslator | null = null;
 
 const getTextTranslator = (): TextTranslator => {
     if (textTranslator) return textTranslator;
-    if (typeof CnPoeExportDb === 'undefined') {
-        throw new Error(
-            '翻译数据库未加载，请检查 https://cdn.jsdelivr.net/npm/cn-poe-export-db@0.8.5/dist/db.global.js'
-        );
-    }
-    const factory = new ZhToEn.TranslatorFactory(CnPoeExportDb);
+    const factory = new TranslatorFactory();
     textTranslator = factory.getTextTranslator();
     return textTranslator;
 };

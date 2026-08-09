@@ -332,7 +332,6 @@
 }
 
 .ptp-search-link > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ptp-search-link.is-completed { color: var(--ptp-muted); text-decoration: line-through; }
 .ptp-search-actions { opacity: 0; transition: opacity 0.15s; }
 .ptp-search-item:hover .ptp-search-actions { opacity: 1; }
 .ptp-search-actions .ptp-icon-button { width: 25px; height: 28px; }

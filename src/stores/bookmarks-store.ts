@@ -155,16 +155,6 @@ export const useBookmarksStore = defineStore('bookmarks', () => {
         return commit(folders.value, nextSearches, '更新搜索地址失败');
     };
 
-    const toggleSearchCompleted = async (searchId: string): Promise<OperationResult> => {
-        const now = new Date().toISOString();
-        const nextSearches = savedSearches.value.map(search =>
-            search.id === searchId
-                ? { ...search, completedAt: search.completedAt ? null : now, updatedAt: now }
-                : search
-        );
-        return commit(folders.value, nextSearches, '更新完成状态失败');
-    };
-
     const deleteSearch = async (searchId: string): Promise<OperationResult> =>
         commit(
             folders.value,
@@ -260,7 +250,6 @@ export const useBookmarksStore = defineStore('bookmarks', () => {
         addSearch,
         updateSearchTitle,
         updateSearchLocation,
-        toggleSearchCompleted,
         deleteSearch,
         reorderSearches,
         createBackup,
