@@ -17,6 +17,7 @@ const DEFAULT_UI_SETTINGS: UiSettings = {
     collapsed: true,
     expandedFolderIds: [],
     sidebarWidth: 420,
+    chaosDivineFilterEnabled: false,
 };
 
 const MIN_SIDEBAR_WIDTH = 340;
@@ -66,6 +67,10 @@ export class PluginRepository {
                 ? settings.expandedFolderIds.filter((id): id is string => typeof id === 'string')
                 : [],
             sidebarWidth,
+            chaosDivineFilterEnabled:
+                typeof settings.chaosDivineFilterEnabled === 'boolean'
+                    ? settings.chaosDivineFilterEnabled
+                    : DEFAULT_UI_SETTINGS.chaosDivineFilterEnabled,
         };
     }
 

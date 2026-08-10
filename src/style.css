@@ -431,6 +431,79 @@
 }
 .ptp-pin-button.is-pinned { color: #ffe1a0; background: var(--ptp-brown); border-color: var(--ptp-brown-border); }
 
+.ptp-search-input-enhanced {
+    display: flex !important;
+    align-items: center;
+    gap: 7px;
+}
+
+.ptp-search-input-enhanced > :first-child {
+    width: auto !important;
+    min-width: 0;
+    flex: 1;
+}
+
+.ptp-chaos-divine-switch {
+    position: relative;
+    display: inline-flex;
+    height: 26px;
+    flex: none;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 5px;
+    padding: 0 6px;
+    color: #a7a7a7;
+    font: 11px/1 "Microsoft YaHei", sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ptp-chaos-divine-switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ptp-chaos-divine-switch-track {
+    position: relative;
+    width: 30px;
+    height: 16px;
+    flex: none;
+    background: #252a2e;
+    border: 1px solid #555d63;
+    border-radius: 9px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.ptp-chaos-divine-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #8d9499;
+    border-radius: 50%;
+    transition: left 0.15s, background 0.15s;
+}
+
+.ptp-chaos-divine-switch.is-active { color: var(--ptp-gold-bright); }
+.ptp-chaos-divine-switch.is-active .ptp-chaos-divine-switch-track {
+    background: #163b58;
+    border-color: #6789a4;
+}
+.ptp-chaos-divine-switch.is-active .ptp-chaos-divine-switch-thumb {
+    left: 16px;
+    background: #d8efff;
+}
+.ptp-chaos-divine-switch:has(input:focus-visible) .ptp-chaos-divine-switch-track {
+    outline: 1px solid var(--ptp-gold);
+    outline-offset: 2px;
+}
+.ptp-chaos-divine-switch:has(input:disabled) { opacity: 0.55; cursor: wait; }
+
 .ptp-result-item-tools-host { position: relative; overflow: visible !important; }
 
 .ptp-result-item-tools {

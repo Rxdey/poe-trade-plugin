@@ -7,6 +7,7 @@ export interface TradeSiteAdapter {
     buildSearchUrl(location: SearchLocation): string;
     recommendSearchTitle(): string;
     observeResults(callback: (rows: HTMLElement[]) => void): () => void;
+    observeSearchInputContainer(callback: (container: HTMLElement) => void): () => void;
     createPinnedSnapshot(row: HTMLElement): PinnedSnapshot | null;
     getResultActionContainer(row: HTMLElement): HTMLElement | null;
     getResultRenderedItem(row: HTMLElement): HTMLElement | null;
@@ -28,10 +29,12 @@ const SELECTORS = {
     searchName: '.search-panel .search-bar .search-left input',
     category: '.search-advanced-items .filter-group:nth-of-type(1) .filter-property:nth-of-type(1) input',
     rarity: '.search-advanced-items .filter-group:nth-of-type(1) .filter-property:nth-of-type(2) input',
+    searchInputContainer: '.search-panel .search-bar .search-left',
 } as const;
 
 const BASE_URL = 'https://poe.game.qq.com/trade/search';
 const TRADE_ROOT_TIMEOUT = 30_000;
+const SEARCH_CONTROL_SCAN_INTERVAL = 500;
 
 class PoeCnTradeSiteAdapter implements TradeSiteAdapter {
     async waitForTradeRoot(): Promise<HTMLElement> {
@@ -90,6 +93,35 @@ class PoeCnTradeSiteAdapter implements TradeSiteAdapter {
         observer.observe(root, { childList: true, subtree: true });
         scan();
         return () => observer.disconnect();
+    }
+
+    observeSearchInputContainer(callback: (container: HTMLElement) => void): () => void {
+        let animationFrameId: number | null = null;
+        const scan = (): void => {
+            animationFrameId = null;
+            const container = document.querySelector<HTMLElement>(SELECTORS.searchInputContainer);
+            if (container) callback(container);
+        };
+        const scheduleScan = (): void => {
+            if (animationFrameId !== null) return;
+            animationFrameId = window.requestAnimationFrame(scan);
+        };
+        const observer = new MutationObserver(scheduleScan);
+        // 国服市集可能在初始化阶段整体替换 #trade，观察文档根节点可持续捕获搜索区重建。
+        observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class', 'placeholder'],
+        });
+        const intervalId = window.setInterval(scheduleScan, SEARCH_CONTROL_SCAN_INTERVAL);
+        scan();
+
+        return () => {
+            observer.disconnect();
+            window.clearInterval(intervalId);
+            if (animationFrameId !== null) window.cancelAnimationFrame(animationFrameId);
+        };
     }
 
     createPinnedSnapshot(row: HTMLElement): PinnedSnapshot | null {
@@ -156,6 +188,7 @@ class PoeCnTradeSiteAdapter implements TradeSiteAdapter {
         if (!value || nullValues.includes(value)) return null;
         return value;
     }
+
 }
 
 export const tradeSiteAdapter: TradeSiteAdapter = new PoeCnTradeSiteAdapter();

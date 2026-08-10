@@ -69,6 +69,8 @@ export interface UiSettings {
     expandedFolderIds: string[];
     /** 展开时的侧栏宽度，单位为像素。 */
     sidebarWidth: number;
+    /** 是否为交易搜索请求合并混沌/神圣价格过滤。 */
+    chaosDivineFilterEnabled: boolean;
 }
 
 export interface PluginBackupV1 {

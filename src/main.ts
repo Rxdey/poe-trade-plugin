@@ -5,6 +5,8 @@ import { tradeSiteAdapter } from '@/adapters/poe-cn/trade-site-adapter';
 import { PinnedItemsEnhancer } from '@/features/pinned-items/pinned-items-enhancer';
 import { ClusterJewelEnhancer } from '@/features/cluster-jewels/cluster-jewel-enhancer';
 import { ItemTranslationEnhancer } from '@/features/item-translation/item-translation-enhancer';
+import { ChaosDivineSearchEnhancer } from '@/features/search-optimization/chaos-divine-search-enhancer';
+import { TradeSearchRequestInterceptor } from '@/features/search-optimization/services/trade-search-request-interceptor';
 import { ResultEnhancerRunner } from '@/result-enhancers/result-enhancer-runner';
 import { RouteObserver } from '@/services/route-observer';
 import { useBookmarksStore } from '@/stores/bookmarks-store';
@@ -18,8 +20,12 @@ import '@/style.css';
 const APP_ROOT_ID = 'poe-trade-plugin';
 
 const bootstrap = async (): Promise<void> => {
-    if (document.getElementById(APP_ROOT_ID)) return;
-    console.info('[POE Trade Plugin] 3.0.0 开始启动', window.location.href);
+    console.info('[POE Trade Plugin] 用户脚本已加载', window.location.href);
+    if (document.getElementById(APP_ROOT_ID)) {
+        console.warn('[POE Trade Plugin] 检测到已有插件实例，跳过重复启动');
+        return;
+    }
+    console.info('[POE Trade Plugin] 3.1.0 开始启动', window.location.href);
 
     try {
         const pinia = createPinia();
@@ -65,6 +71,12 @@ const bootstrap = async (): Promise<void> => {
         const pinnedEnhancer = new PinnedItemsEnhancer(tradeSiteAdapter, pinnedStore, uiStore);
         const clusterJewelEnhancer = new ClusterJewelEnhancer(tradeSiteAdapter);
         const itemTranslationEnhancer = new ItemTranslationEnhancer(tradeSiteAdapter, uiStore);
+        const tradeSearchRequestInterceptor = new TradeSearchRequestInterceptor(unsafeWindow);
+        const chaosDivineSearchEnhancer = new ChaosDivineSearchEnhancer(
+            tradeSiteAdapter,
+            tradeSearchRequestInterceptor,
+            uiStore
+        );
         const enhancerRunner = new ResultEnhancerRunner(tradeSiteAdapter, [
             pinnedEnhancer,
             clusterJewelEnhancer,
@@ -72,12 +84,14 @@ const bootstrap = async (): Promise<void> => {
         ]);
         routeObserver.start();
         enhancerRunner.start();
+        chaosDivineSearchEnhancer.start();
 
         window.addEventListener(
             'beforeunload',
             () => {
                 routeObserver.dispose();
                 enhancerRunner.dispose();
+                chaosDivineSearchEnhancer.dispose();
             },
             { once: true }
         );

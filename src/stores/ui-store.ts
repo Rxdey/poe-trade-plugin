@@ -21,6 +21,7 @@ export const useUiStore = defineStore('ui', () => {
     const collapsed = ref(DEFAULT_SETTINGS.collapsed);
     const expandedFolderIds = ref<string[]>([]);
     const sidebarWidth = ref(DEFAULT_SETTINGS.sidebarWidth);
+    const chaosDivineFilterEnabled = ref(DEFAULT_SETTINGS.chaosDivineFilterEnabled);
     const notices = ref<UiNotice[]>([]);
     const confirmRequest = shallowRef<ConfirmRequest | null>(null);
     const expanded = computed(() => !collapsed.value);
@@ -32,6 +33,7 @@ export const useUiStore = defineStore('ui', () => {
             collapsed.value = settings.collapsed;
             expandedFolderIds.value = settings.expandedFolderIds;
             sidebarWidth.value = settings.sidebarWidth;
+            chaosDivineFilterEnabled.value = settings.chaosDivineFilterEnabled;
             return successResult(undefined);
         } catch (error) {
             return failureResult(error, '初始化界面设置失败');
@@ -45,6 +47,7 @@ export const useUiStore = defineStore('ui', () => {
                 collapsed: collapsed.value,
                 expandedFolderIds: expandedFolderIds.value,
                 sidebarWidth: sidebarWidth.value,
+                chaosDivineFilterEnabled: chaosDivineFilterEnabled.value,
             });
             return successResult(undefined);
         } catch (error) {
@@ -86,6 +89,17 @@ export const useUiStore = defineStore('ui', () => {
         return result;
     };
 
+    const setChaosDivineFilterEnabled = async (enabled: boolean): Promise<OperationResult> => {
+        const previousValue = chaosDivineFilterEnabled.value;
+        chaosDivineFilterEnabled.value = enabled;
+        const result = await persist();
+        if (!result.success) {
+            chaosDivineFilterEnabled.value = previousValue;
+            notify(result.error, 'error');
+        }
+        return result;
+    };
+
     const notify = (message: string, type: NoticeType = 'success'): void => {
         const id = crypto.randomUUID();
         notices.value.push({ id, message, type });
@@ -110,6 +124,7 @@ export const useUiStore = defineStore('ui', () => {
         collapsed,
         expandedFolderIds,
         sidebarWidth,
+        chaosDivineFilterEnabled,
         expanded,
         notices,
         confirmRequest,
@@ -119,6 +134,7 @@ export const useUiStore = defineStore('ui', () => {
         toggleFolderExpanded,
         previewSidebarWidth,
         saveSidebarWidth,
+        setChaosDivineFilterEnabled,
         notify,
         confirm,
         resolveConfirm,
